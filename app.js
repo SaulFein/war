@@ -56,6 +56,9 @@ var aceDiamonds = new Card ('diamonds', 14, 'ace of diamonds');
 
 var deck = [twoClubs, threeClubs, fourClubs, fiveClubs, sixClubs, sevenClubs, eightClubs, nineClubs, tenClubs, jackClubs, queenClubs, kingClubs, aceClubs, twoHearts, threeHearts, fourHearts, fiveHearts, sixHearts, sevenHearts, eightHearts, nineHearts, tenHearts, jackHearts, queenHearts, kingHearts, aceHearts, twoSpades, threeSpades, fourSpades, fiveSpades, sixSpades, sevenSpades, eightSpades, nineSpades, tenSpades, jackSpades, queenSpades, kingSpades, aceSpades, twoDiamonds, threeDiamonds, fourDiamonds, fiveDiamonds, sixDiamonds, sevenDiamonds, eightDiamonds, nineDiamonds, tenDiamonds, jackDiamonds, queenDiamonds, kingDiamonds, aceDiamonds];
 
+var deck1 = [];
+var deck2 = [];
+
 function Card(suit, value, name) {
   this.suit = suit;
   this.value = value;
@@ -64,21 +67,25 @@ function Card(suit, value, name) {
 
 function shuffleDeck () {
   deck.sort(function() { return 0.5 - Math.random() });
+  for (var i = 0; i < deck.length; i += 2){
+      deck1.push(deck[i]);
+      deck[i + 1] && deck2.push(deck[i + 1]);
+  };
 }
 
-var i = 0;
-var j = 1;
+  var i = 0;
+  var j = 0;
 
 $('#next').on('click', function() {
     i += 1;
-    j += 1; //need to set one to odd #s and one to even #s only
-    $('#warspace').text(deck[i].name + " " + "vs" + " " + deck[j].name);
-    if(deck[i].value > deck[j].value) {
+    j += 1;
+    $('#warspace').text(deck1[i].name + " " + "vs" + " " + deck2[j].name);
+    if(deck1[i].value > deck2[j].value) {
       $('#winner').text("player one wins the round");
     } else {
       $('#winner').text("player two wins the round");
     }
-    console.log(deck[i].value, deck[j].value);
+    console.log(deck1[i].value, deck2[j].value);
   }
 );
 
