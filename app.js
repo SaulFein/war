@@ -76,10 +76,7 @@ function shuffleDeck () {
   var i = 0;
   var j = 0;
 
-$('#next').on('click', function() {
-    i += 1;
-    j += 1;
-    $('#warspace').text(deck1[i].name + " " + "vs" + " " + deck2[j].name);
+  function displayWinner() {
     if(deck1[i].value > deck2[j].value) {
       $('#winner').text("player one wins the round");
     } else {
@@ -87,9 +84,16 @@ $('#next').on('click', function() {
     }
     console.log(deck1[i].value, deck2[j].value);
   }
+
+
+$('#next').on('click', function() {
+    i += 1;
+    j += 1;
+    $('#winner').text("");
+    $('#warspace').text(deck1[i].name + " " + "vs" + " " + deck2[j].name);
+  setTimeout('displayWinner()', 500)
+  }
 );
 
+
 shuffleDeck();
-// display();
-// displayWinner();
-// console.log(deck[0], deck[1]);
