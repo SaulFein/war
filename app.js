@@ -70,10 +70,8 @@ var i = 0;
 var j = 1;
 
 $('#next').on('click', function() {
-
     i += 1;
     j += 1; //need to set one to odd #s and one to even #s only
-
     $('#warspace').text(deck[i].name + " " + "vs" + " " + deck[j].name);
     if(deck[i].value > deck[j].value) {
       $('#winner').text("player one wins the round");
