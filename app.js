@@ -37,6 +37,7 @@
       deck[i + 1] && deck2.push(deck[i + 1]);
     };
   };
+
   Card.handleWar = function() {
     $('warspace').text('');
     Card.flip();
@@ -55,14 +56,10 @@
       console.log('WAR!!!!');
       warPot.push(deck1[i]);
       warPot.push(deck2[j]);
-      Card.handleWar();
-      // i++;
-      // j++;
-
-      // Card.displayCard1();
-      // setTimeout('Card.displayCard2()', 500);
-      // setTimeout('Card.displayWinner()', 500);
-    // flip next card and compare them to decide winner if cards are equal flip another card
+      deck1.splice(i, 1);
+      deck2.splice(j, 1);
+      console.log(warPot);
+      setTimeout('Card.handleWar();', 800);
     } else if (deck1[i].value > deck2[j].value) {
       $('#winner').text(playerOne + ' wins the round');
       p1s++;
@@ -70,8 +67,7 @@
       deck1.push(deck1[i]);
       deck2.splice(j, 1);
       deck1.splice(i, 1);
-      // console.log(deck1);
-      // console.log(deck2);
+      deck1 = deck1.concat(warPot);
     } else {
       $('#winner').text('computer wins the round');
       p2s++;
@@ -79,13 +75,11 @@
       deck2.push(deck2[j]);
       deck1.splice(i, 1);
       deck2.splice(j, 1);
-      // console.log(deck1);
-      // console.log(deck2);
+      deck2 = deck2.concat(warPot);
     }
     console.log(playerOne + ' has ' + deck1.length + ' cards');
     console.log('The computer has ' + deck2.length + ' cards');
     console.log('------------------------------------');
-    // console.log(deck1[i].value, deck2[j].value);
   };
 
   Card.gameOver = function() {
@@ -103,14 +97,21 @@
     if (i >= deck1.length -1) {
       i = 0;
       console.log(playerOne + ' hit the end of their deck');
+      console.log('i = ' + i + ' j = ' + j);
+      console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
+      console.log(deck1);
+      console.log(deck2);
     } else if (j >= deck2.length -1) {
       j = 0;
       console.log('The Computer hit the end of its deck');
+      console.log('i = ' + i + ' j = ' + j);
+      console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
+      console.log(deck1);
+      console.log(deck2);
     } else {
       i += 1;
       j += 1;
       console.log('i = ' + i + ' j = ' + j);
-
       console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
       console.log(deck1);
       console.log(deck2);
