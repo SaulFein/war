@@ -39,18 +39,27 @@
 
   Card.displayWinner = function() {
     $('#warspace').append(' ' + deck2[j].img);
-    if (deck1[i].value == deck2[j].value){
-      console.log('WAR!!!!');
-    } else if (deck1[i].value > deck2[j].value) {
+    // if (deck1[i].value == deck2[j].value){
+    //   console.log('WAR!!!!');
+    // } else
+    if (deck1[i].value > deck2[j].value) {
       $('#winner').text(playerOne + ' wins the round');
       p1s++;
       deck1.push(deck2[j]);
-      deck2.shift(deck2[j]);
+      deck1.push(deck1[i]);
+      deck2.splice(j, 1);
+      deck1.splice(i, 1);
+      // console.log(deck1);
+      // console.log(deck2);
     } else {
       $('#winner').text('computer wins the round');
       p2s++;
       deck2.push(deck1[i]);
-      deck1.shift(deck2[j]);
+      deck2.push(deck2[j]);
+      deck1.splice(i, 1);
+      deck2.splice(j, 1);
+      // console.log(deck1);
+      // console.log(deck2);
     }
     console.log(playerOne + ' has ' + deck1.length + ' cards');
     console.log('The computer has ' + deck2.length + ' cards');
@@ -71,7 +80,7 @@
   Card.flip = function(){
     if (i >= deck1.length -1) {
       i = 0;
-      console.log( playerOne + ' hit the end of their deck');
+      console.log(playerOne + ' hit the end of their deck');
     }
     if (j >= deck2.length -1) {
       j = 0;
@@ -87,7 +96,7 @@
     $('#next').on('click', function() {
       Card.flip();
       $('#winner').text('');
-      if(deck1.length === 0 || deck2.length === 0){
+      if(deck1.length -1 === 0 || deck2.length -1 === 0){
         Card.gameOver();
       } else {
         $('#warspace').html(deck1[i].img + ' ' + 'vs');
