@@ -10,6 +10,7 @@
   var p1s = 0;
   var p2s = 0;
   var playerOne;
+  var warPot = [];
 
   function Card(suit, value, name, img) {
     this.suit = suit;
@@ -36,13 +37,33 @@
       deck[i + 1] && deck2.push(deck[i + 1]);
     };
   };
+  Card.handleWar = function() {
+    $('warspace').text('');
+    Card.flip();
+    if(deck1.length -1 === 0 || deck2.length -1 === 0){
+      Card.gameOver();
+    } else {
+      $('warspace').text('');
+      Card.displayCard1();
+      Card.displayCard2();
+      Card.displayWinner();
+    }
+  };
 
   Card.displayWinner = function() {
-    $('#warspace').append(' ' + deck2[j].img);
-    // if (deck1[i].value == deck2[j].value){
-    //   console.log('WAR!!!!');
-    // } else
-    if (deck1[i].value > deck2[j].value) {
+    if (deck1[i].value == deck2[j].value){
+      console.log('WAR!!!!');
+      warPot.push(deck1[i]);
+      warPot.push(deck2[j]);
+      Card.handleWar();
+      // i++;
+      // j++;
+
+      // Card.displayCard1();
+      // setTimeout('Card.displayCard2()', 500);
+      // setTimeout('Card.displayWinner()', 500);
+    // flip next card and compare them to decide winner if cards are equal flip another card
+    } else if (deck1[i].value > deck2[j].value) {
       $('#winner').text(playerOne + ' wins the round');
       p1s++;
       deck1.push(deck2[j]);
@@ -63,6 +84,7 @@
     }
     console.log(playerOne + ' has ' + deck1.length + ' cards');
     console.log('The computer has ' + deck2.length + ' cards');
+    console.log('------------------------------------');
     // console.log(deck1[i].value, deck2[j].value);
   };
 
@@ -81,14 +103,18 @@
     if (i >= deck1.length -1) {
       i = 0;
       console.log(playerOne + ' hit the end of their deck');
-    }
-    if (j >= deck2.length -1) {
+    } else if (j >= deck2.length -1) {
       j = 0;
       console.log('The Computer hit the end of its deck');
     } else {
       i += 1;
       j += 1;
       console.log('i = ' + i + ' j = ' + j);
+
+      console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
+      console.log(deck1);
+      console.log(deck2);
+
     }
   };
 
@@ -99,19 +125,31 @@
       if(deck1.length -1 === 0 || deck2.length -1 === 0){
         Card.gameOver();
       } else {
-        $('#warspace').html(deck1[i].img + ' ' + 'vs');
-        setTimeout('Card.displayWinner()', 500);
+        Card.displayCard1();
+        Card.displayCard2();
+
+        // setTimeout('Card.displayCard2()', 500);
+        Card.displayWinner();
       }
     }
   );};
 
+  Card.displayCard1 = function() {
+    $('#warspace').html(deck1[i].img + ' ' + 'vs');
+  };
+
+  Card.displayCard2 = function() {
+    $('#warspace').append(' ' + deck2[j].img);
+  };
+
   // Card.takeUserInput();
-  Card.playGame();
   Card.createSuit('Clubs');
   Card.createSuit('Spades');
   Card.createSuit('Diamonds');
   Card.createSuit('Hearts');
   Card.shuffleDeck();
+  Card.playGame();
+
 
   module.Card = Card;
 })(window);
