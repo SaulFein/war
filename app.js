@@ -43,9 +43,20 @@ $('#next').on('click', function() {
     i += 1;
     j += 1;
     $('#winner').text("");
-    $('#warspace').html(deck1[i].img + " " + "vs" + " " + deck2[j].img);
+    if(i == 26){
+      alert("game over!");
+      $('#next').hide();
+      var $ngb = $('<input type="button" value="New Game" />');
+      $ngb.appendTo($("#newgame"));
+      $('#newgame').show();
+      $ngb.on('click', function(){
+        window.location.reload();
+      });
+    } else {
+      $('#warspace').html(deck1[i].img + " " + "vs" + " " + deck2[j].img);
     // $('#warspace').html(this.img);
-  setTimeout('displayWinner()', 500)
+      setTimeout('displayWinner()', 500)
+    }
   }
 );
 
