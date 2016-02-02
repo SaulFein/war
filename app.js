@@ -48,18 +48,21 @@
       Card.displayCard1();
       Card.displayCard2();
       Card.displayWinner();
+      $('#next').show();
     }
   };
 
   Card.displayWinner = function() {
     if (deck1[i].value == deck2[j].value){
       console.log('WAR!!!!');
+      $('#winner').text('WAR!!!');
+      $('#next').hide();
       warPot.push(deck1[i]);
       warPot.push(deck2[j]);
       deck1.splice(i, 1);
       deck2.splice(j, 1);
       console.log(warPot);
-      setTimeout('Card.handleWar();', 800);
+      setTimeout('Card.handleWar();', 2000);
     } else if (deck1[i].value > deck2[j].value) {
       $('#winner').text(playerOne + ' wins the round');
       p1s++;
