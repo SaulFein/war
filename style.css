@@ -1,3 +1,57 @@
-img {
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background-image: url('img/warback.jpg');
+}
+#warspace {
+  text-align: center;
+  /*margin-top: -25%;*/
+}
+
+#warspace img {
+  width: 20%;
+}
+
+#winner {
+  text-align: center;
+}
+
+#title {
+  /*position: fixed;
+  left: 0;
+  right: 0;*/
+  margin-top: 15%;
+  text-align: center;
+  font-family: 'Black Ops One', cursive;
+  color: #4b5320;
+  font-size: 6em;
+}
+
+#userinput {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-top: 20%;
+  display: none;
+  text-align: center;
+  margin: auto;
+
+}
+
+#userinputfield {
   width: 35%;
+}
+
+#next {
+  display: none;
+  width: 15%;
+  margin: auto;
+  padding: 1%;
+}
+
+#next button{
+  width: 100%;
+  margin: auto;
 }

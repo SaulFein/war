@@ -68,6 +68,7 @@
       deck2.splice(j, 1);
       deck1.splice(i, 1);
       deck1 = deck1.concat(warPot);
+      warPot = [];
     } else {
       $('#winner').text('computer wins the round');
       p2s++;
@@ -76,6 +77,7 @@
       deck1.splice(i, 1);
       deck2.splice(j, 1);
       deck2 = deck2.concat(warPot);
+      warPot = [];
     }
     console.log(playerOne + ' has ' + deck1.length + ' cards');
     console.log('The computer has ' + deck2.length + ' cards');
@@ -93,29 +95,26 @@
     });
   };
 
-  Card.flip = function(){
+  var logCards = function() {
+    console.log('i = ' + i + ' j = ' + j);
+    console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
+    console.log(deck1);
+    console.log(deck2);
+  };
+
+  Card.flip = function() {
     if (i >= deck1.length -1) {
       i = 0;
       console.log(playerOne + ' hit the end of their deck');
-      console.log('i = ' + i + ' j = ' + j);
-      console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
-      console.log(deck1);
-      console.log(deck2);
+      logCards();
     } else if (j >= deck2.length -1) {
       j = 0;
       console.log('The Computer hit the end of its deck');
-      console.log('i = ' + i + ' j = ' + j);
-      console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
-      console.log(deck1);
-      console.log(deck2);
+      logCards();
     } else {
-      i += 1;
-      j += 1;
-      console.log('i = ' + i + ' j = ' + j);
-      console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
-      console.log(deck1);
-      console.log(deck2);
-
+      i++;
+      j++;
+      logCards();
     }
   };
 
