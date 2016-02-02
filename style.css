@@ -5,8 +5,23 @@ body {
   min-height: 100%;
   background-image: url('img/warback.jpg');
 }
+
+#gamespace{
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 20%;
+}
+
 #warspace {
+  /*position: fixed;
+  right: 0;
+  left: 0;
+  top: 20%;*/
   text-align: center;
+  font-family: 'Black Ops One', cursive;
+  color: white;
+  font-size: 2em;
   /*margin-top: -25%;*/
 }
 
@@ -15,7 +30,14 @@ body {
 }
 
 #winner {
+  /*position: fixed;
+  right: 0;
+  left: 0;
+  top: 65%;*/
   text-align: center;
+  font-family: 'Black Ops One', cursive;
+  color: white;
+  font-size: 2em;
 }
 
 #title {
@@ -49,6 +71,10 @@ body {
   width: 15%;
   margin: auto;
   padding: 1%;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 10%;
 }
 
 #next button{
