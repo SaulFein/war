@@ -1,90 +1,158 @@
-var twoClubs = new Card ('clubs', 2, 'two of clubs');
-var threeClubs = new Card ('clubs', 3, 'three of clubs');
-var fourClubs = new Card ('clubs', 4, 'four of clubs');
-var fiveClubs = new Card ('clubs', 5, 'five of clubs');
-var sixClubs = new Card ('clubs', 6, 'six of clubs');
-var sevenClubs = new Card ('clubs', 7, 'seven of clubs');
-var eightClubs = new Card ('clubs', 8, 'eight of clubs');
-var nineClubs = new Card ('clubs', 9, 'nine of clubs');
-var tenClubs = new Card ('clubs', 10, 'ten of clubs');
-var jackClubs = new Card ('clubs', 11, 'jack of clubs');
-var queenClubs = new Card ('clubs', 12, 'queen of clubs');
-var kingClubs = new Card ('clubs', 13, 'king of clubs');
-var aceClubs = new Card ('clubs', 14, 'ace of clubs');
+(function(module) {
 
-var twoHearts = new Card ('hearts', 2, 'two of hearts');
-var threeHearts = new Card ('hearts', 3, 'three of hearts');
-var fourHearts = new Card ('hearts', 4, 'four of hearts');
-var fiveHearts = new Card ('hearts', 5, 'five of hearts');
-var sixHearts = new Card ('hearts', 6, 'six of hearts');
-var sevenHearts = new Card ('hearts', 7, 'seven of hearts');
-var eightHearts = new Card ('hearts', 8, 'eight of hearts');
-var nineHearts = new Card ('hearts', 9, 'nine of hearts');
-var tenHearts = new Card ('hearts', 10, 'ten of hearts');
-var jackHearts = new Card ('hearts', 11, 'jack of hearts');
-var queenHearts = new Card ('hearts', 12, 'queen of hearts');
-var kingHearts = new Card ('hearts', 13, 'king of hearts');
-var aceHearts = new Card ('hearts', 14, 'ace of hearts');
+  var cardsInSuit = ['two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king', 'ace'];
 
-var twoSpades = new Card ('spades', 2, 'two of spades');
-var threeSpades = new Card ('spades', 3, 'three of spades');
-var fourSpades = new Card ('spades', 4, 'four of spades');
-var fiveSpades = new Card ('spades', 5, 'five of spades');
-var sixSpades = new Card ('spades', 6, 'six of spades');
-var sevenSpades = new Card ('spades', 7, 'seven of spades');
-var eightSpades = new Card ('spades', 8, 'eight of spades');
-var nineSpades = new Card ('spades', 9, 'nine of spades');
-var tenSpades = new Card ('spades', 10, 'ten of spades');
-var jackSpades = new Card ('spades', 11, 'jack of spades');
-var queenSpades = new Card ('spades', 12, 'queen of spades');
-var kingSpades = new Card ('spades', 13, 'king of spades');
-var aceSpades = new Card ('spades', 14, 'ace of spades');
+  var deck = [];
+  var deck1 = [];
+  var deck2 = [];
+  var i = -1;
+  var j = -1;
+  var p1s = 0;
+  var p2s = 0;
+  var playerOne;
+  var warPot = [];
 
-var twoDiamonds = new Card ('diamonds', 2, 'two of diamonds');
-var threeDiamonds = new Card ('diamonds', 3, 'three of diamonds');
-var fourDiamonds = new Card ('diamonds', 4, 'four of diamonds');
-var fiveDiamonds = new Card ('diamonds', 5, 'five of diamonds');
-var sixDiamonds = new Card ('diamonds', 6, 'six of diamonds');
-var sevenDiamonds = new Card ('diamonds', 7, 'seven of diamonds');
-var eightDiamonds = new Card ('diamonds', 8, 'eight of diamonds');
-var nineDiamonds = new Card ('diamonds', 9, 'nine of diamonds');
-var tenDiamonds = new Card ('diamonds', 10, 'ten of diamonds');
-var jackDiamonds = new Card ('diamonds', 11, 'jack of diamonds');
-var queenDiamonds = new Card ('diamonds', 12, 'queen of diamonds');
-var kingDiamonds = new Card ('diamonds', 13, 'king of diamonds');
-var aceDiamonds = new Card ('diamonds', 14, 'ace of diamonds');
-
-var deck = [twoClubs, threeClubs, fourClubs, fiveClubs, sixClubs, sevenClubs, eightClubs, nineClubs, tenClubs, jackClubs, queenClubs, kingClubs, aceClubs, twoHearts, threeHearts, fourHearts, fiveHearts, sixHearts, sevenHearts, eightHearts, nineHearts, tenHearts, jackHearts, queenHearts, kingHearts, aceHearts, twoSpades, threeSpades, fourSpades, fiveSpades, sixSpades, sevenSpades, eightSpades, nineSpades, tenSpades, jackSpades, queenSpades, kingSpades, aceSpades, twoDiamonds, threeDiamonds, fourDiamonds, fiveDiamonds, sixDiamonds, sevenDiamonds, eightDiamonds, nineDiamonds, tenDiamonds, jackDiamonds, queenDiamonds, kingDiamonds, aceDiamonds];
-
-function Card(suit, value, name) {
-  this.suit = suit;
-  this.value = value;
-  this.name = name;
-}
-
-function shuffleDeck () {
-  deck.sort(function() { return 0.5 - Math.random() });
-}
-
-var i = 0;
-var j = 1;
-
-$('#next').on('click', function() {
-
-    i += 1;
-    j += 1; //need to set one to odd #s and one to even #s only
-
-    $('#warspace').text(deck[i].name + " " + "vs" + " " + deck[j].name);
-    if(deck[i].value > deck[j].value) {
-      $('#winner').text("player one wins the round");
-    } else {
-      $('#winner').text("player two wins the round");
-    }
-    console.log(deck[i].value, deck[j].value);
+  function Card(suit, value, name, img) {
+    this.suit = suit;
+    this.value = value;
+    this.name = name;
+    this.img = img;
   }
-);
 
-shuffleDeck();
-// display();
-// displayWinner();
-// console.log(deck[0], deck[1]);
+  Card.takeUserInput = function(){
+    playerOne = $('#userinputfield').val();
+    console.log(playerOne);
+  };
+
+  Card.createSuit = function(suit){
+    for (var i = 0; i < 13; i++) {
+      deck.push(new Card ( suit, parseInt([i]) + 2, cardsInSuit[i] + ' of ' + suit, '<img src="img/' + cardsInSuit[i] + suit + '.png">'));
+    }
+  };
+
+  Card.shuffleDeck = function() {
+    deck.sort(function() { return 0.5 - Math.random();});
+    for (var i = 0; i < deck.length; i += 2){
+      deck1.push(deck[i]);
+      deck[i + 1] && deck2.push(deck[i + 1]);
+    };
+  };
+
+  Card.handleWar = function() {
+    $('warspace').text('');
+    Card.flip();
+    if(deck1.length -1 === 0 || deck2.length -1 === 0){
+      Card.gameOver();
+    } else {
+      $('warspace').text('');
+      Card.displayCard1();
+      Card.displayCard2();
+      Card.displayWinner();
+      $('#next').show();
+    }
+  };
+
+  Card.displayWinner = function() {
+    if (deck1[i].value == deck2[j].value){
+      console.log('WAR!!!!');
+      $('#winner').text('WAR!!!');
+      $('#next').hide();
+      warPot.push(deck1[i]);
+      warPot.push(deck2[j]);
+      deck1.splice(i, 1);
+      deck2.splice(j, 1);
+      console.log(warPot);
+      setTimeout('Card.handleWar();', 2000);
+    } else if (deck1[i].value > deck2[j].value) {
+      $('#winner').text(playerOne + ' wins the round');
+      p1s++;
+      deck1.push(deck2[j]);
+      deck1.push(deck1[i]);
+      deck2.splice(j, 1);
+      deck1.splice(i, 1);
+      deck1 = deck1.concat(warPot);
+      warPot = [];
+    } else {
+      $('#winner').text('computer wins the round');
+      p2s++;
+      deck2.push(deck1[i]);
+      deck2.push(deck2[j]);
+      deck1.splice(i, 1);
+      deck2.splice(j, 1);
+      deck2 = deck2.concat(warPot);
+      warPot = [];
+    }
+    console.log(playerOne + ' has ' + deck1.length + ' cards');
+    console.log('The computer has ' + deck2.length + ' cards');
+    console.log('------------------------------------');
+  };
+
+  Card.gameOver = function() {
+    alert('game over! ' + playerOne + ' score = ' + p1s + ' Computer score ' + p2s);
+    $('#next').hide();
+    var $ngb = $('<input type="button" value="New Game" />');
+    $ngb.appendTo($('#newgame'));
+    $('#newgame').show();
+    $ngb.on('click', function(){
+      window.location.reload();
+    });
+  };
+
+  var logCards = function() {
+    console.log('i = ' + i + ' j = ' + j);
+    console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
+    console.log(deck1);
+    console.log(deck2);
+  };
+
+  Card.flip = function() {
+    if (i >= deck1.length -1) {
+      i = 0;
+      console.log(playerOne + ' hit the end of their deck');
+      logCards();
+    } else if (j >= deck2.length -1) {
+      j = 0;
+      console.log('The Computer hit the end of its deck');
+      logCards();
+    } else {
+      i++;
+      j++;
+      logCards();
+    }
+  };
+
+  Card.playGame = function() {
+    $('#next').on('click', function() {
+      Card.flip();
+      $('#winner').text('');
+      if(deck1.length -1 === 0 || deck2.length -1 === 0){
+        Card.gameOver();
+      } else {
+        Card.displayCard1();
+        Card.displayCard2();
+
+        // setTimeout('Card.displayCard2()', 500);
+        Card.displayWinner();
+      }
+    }
+  );};
+
+  Card.displayCard1 = function() {
+    $('#warspace').html(deck1[i].img + ' ' + 'vs');
+  };
+
+  Card.displayCard2 = function() {
+    $('#warspace').append(' ' + deck2[j].img);
+  };
+
+  // Card.takeUserInput();
+  Card.createSuit('Clubs');
+  Card.createSuit('Spades');
+  Card.createSuit('Diamonds');
+  Card.createSuit('Hearts');
+  Card.shuffleDeck();
+  Card.playGame();
+
+
+  module.Card = Card;
+})(window);

@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="animate.css">
+    <link href='https://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
     <title>WarGame</title>
   </head>
   <body>
-    <h1>War</h1>
-    <button id="next">Next</button>
-<div id="warspace"></div>
-  <div id="winner"></div>
+    <h1 id="title">War</h1>
+    <div id="next">
+      <button class="button">Flip</button>
+    </div>
+
+    <form id="userinput">
+      <input type=text id="userinputfield"  placeholder="Enter your name!"/>
+      <input type="submit" style="position: absolute; left: -9999px"/>
+      <label class="inlined" for="name"></label>
+    </form>
+
+    <div id="newgame"></div>
+    <div id="gamespace">
+      <div id="warspace"></div>
+      <div id="winner"></div>
+    </div>
 
     <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="page.js"></script>
+    <script src="view.js"></script>
     <script src="app.js"></script>
+    <script src="routes.js"></script>
   </body>
 </html>

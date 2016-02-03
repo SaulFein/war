@@ -1,0 +1,167 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background-image: url('img/warback.jpg');
+}
+
+#gamespace{
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 20%;
+}
+
+#warspace {
+  text-align: center;
+  font-family: 'Black Ops One', cursive;
+  color: white;
+  font-size: 2em;
+}
+
+#warspace img {
+  width: 20%;
+}
+
+#winner {
+  text-align: center;
+  font-family: 'Black Ops One', cursive;
+  color: white;
+  font-size: 2em;
+}
+
+#title {
+  margin-top: 15%;
+  text-align: center;
+  font-family: 'Black Ops One', cursive;
+  color: #4b5320;
+  font-size: 8em;
+  text-shadow: 1px 1px 1px black;
+}
+
+#userinput {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-top: 20%;
+  display: none;
+  text-align: center;
+  margin: auto;
+
+}
+
+#userinputfield {
+  width: 40%;
+  border: 5px solid white;
+  background: rgba(255,255,255,0.5);
+  padding: 15px;
+  font-family: 'Black Ops One', cursive;
+  color: #4b5320;
+  font-size: 2em;
+  text-align: center;
+  -webkit-box-shadow:
+        inset 0 0 8px  rgba(0,0,0,0.1),
+              0 0 16px rgba(0,0,0,0.1);
+      -moz-box-shadow:
+        inset 0 0 8px  rgba(0,0,0,0.1),
+              0 0 16px rgba(0,0,0,0.1);
+      box-shadow:
+        inset 0 0 8px  rgba(0,0,0,0.1),
+              0 0 16px rgba(0,0,0,0.1);
+}
+
+::-webkit-input-placeholder {
+ color: rgba(118, 121, 128, 0.8);
+ font-family: 'Black Ops One', cursive;
+ text-align: center;
+}
+:-moz-placeholder { /* older Firefox*/
+ color: rgba(118, 121, 128, 0.8);
+ font-family: 'Black Ops One', cursive;
+ text-align: center;
+}
+::-moz-placeholder { /* Firefox 19+ */
+ color: rgba(118, 121, 128, 0.8);
+ font-family: 'Black Ops One', cursive;
+ text-align: center;
+}
+:-ms-input-placeholder {
+ color: rgba(118, 121, 128, 0.8);
+ font-family: 'Black Ops One', cursive;
+ text-align: center;
+}
+
+#userinputfield:focus {
+  outline: none;
+}
+
+#userinputfield.input-text {
+  position: relative;
+}
+
+/*button style and animation*/
+#next {
+  display: none;
+  width: 15%;
+  margin: auto;
+  padding: 1%;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 10%;
+}
+
+#next button{
+  width: 100%;
+}
+
+.button {
+  font: bold 20px Arial,sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0.1em 0 rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0.4em 2em 0.5em;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  border-radius: 0.3em;
+  border: 1px solid;
+  border-color: #A23F3F #7E3C3C #8A3737;
+  background-color: #eee;
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d60000), color-stop(100%, #df5555));
+  background-image: -moz-linear-gradient(#d60000, #df5555);
+  background-image: -webkit-linear-gradient(#d60000, #df5555);
+  background-image: linear-gradient(#d60000, #df5555);
+  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -moz-transition: all 100ms;
+  -o-transition: all 100ms;
+  -webkit-transition: all 100ms;
+  transition: all 100ms;
+}
+.button:hover {
+  -moz-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+}
+.button:active {
+  padding: 0.4em 2em 0.4em;
+  margin-top: 0.1em;
+  border-color: #8a3737 #8a3737 #8a3737;
+  background-size: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #df5555), color-stop(100%, #ffcccc));
+  background-image: -moz-linear-gradient(#df5555, #ffcccc);
+  background-image: -webkit-linear-gradient(#df5555, #ffcccc);
+  background-image: linear-gradient(#df5555, #ffcccc);
+  -moz-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+  -moz-transition: all 10ms;
+  -o-transition: all 10ms;
+  -webkit-transition: all 10ms;
+  transition: all 10ms;
+}
