@@ -52,8 +52,72 @@ body {
 }
 
 #userinputfield {
-  width: 35%;
+  width: 40%;
+  border: 5px solid white;
+  background: rgba(255,255,255,0.5);
+  padding: 15px;
+  font-family: 'Black Ops One', cursive;
+  color: #4b5320;
+  font-size: 2em;
+  text-align: center;
+  -webkit-box-shadow:
+        inset 0 0 8px  rgba(0,0,0,0.1),
+              0 0 16px rgba(0,0,0,0.1);
+      -moz-box-shadow:
+        inset 0 0 8px  rgba(0,0,0,0.1),
+              0 0 16px rgba(0,0,0,0.1);
+      box-shadow:
+        inset 0 0 8px  rgba(0,0,0,0.1),
+              0 0 16px rgba(0,0,0,0.1);
 }
+
+::-webkit-input-placeholder {
+ color: rgba(118, 121, 128, 0.8);
+ font-family: 'Black Ops One', cursive;
+ text-align: center;
+}
+:-moz-placeholder { /* older Firefox*/
+ color: rgba(118, 121, 128, 0.8);
+ font-family: 'Black Ops One', cursive;
+ text-align: center;
+}
+::-moz-placeholder { /* Firefox 19+ */
+ color: rgba(118, 121, 128, 0.8);
+ font-family: 'Black Ops One', cursive;
+ text-align: center;
+}
+:-ms-input-placeholder {
+ color: rgba(118, 121, 128, 0.8);
+ font-family: 'Black Ops One', cursive;
+ text-align: center;
+}
+
+#userinputfield:focus {
+  outline: none;
+}
+
+#userinputfield.input-text {
+  position: relative;
+  /*z-index: 2;*/
+}
+
+/*label.inlined {
+  padding-left: 6px;
+  font-weight: normal;
+  font-size: 12px;
+  font-family: "Helvetica Neue";
+  opacity: 0.75;
+  -webkit-transition: opacity 0.15s linear;
+}*/
+
+/*label {
+  position: relative;
+  z-index: 1;
+}
+
+label.inlined + input.input-text {
+  margin-top: -22px;
+}*/
 
 #next {
   display: none;
