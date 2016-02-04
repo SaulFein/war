@@ -12,9 +12,6 @@ landingPageController.show = function() {
     $('#userinput').addClass('animated bounceOutLeft');
     $('#next').show();
   })
-  // $('#f1').addClass('animated fadeInUp'); //beginning of the madness..f1 is the welcome text
-  // $('#f2').addClass('animated fadeInDownBig');
-  // $('#bg').addClass('animated fadeIn');
-  // $('#shade').addClass('animated fadeIn');
 );};
+
 landingPageController.show();

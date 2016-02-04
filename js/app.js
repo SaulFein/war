@@ -1,58 +1,34 @@
+var cardsInSuit = ['two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king', 'ace'];
+
+var deck = [];
+var deck1 = [];
+var deck2 = [];
+var playerOne;
+
 (function(module) {
 
-  var cardsInSuit = ['two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king', 'ace'];
-
-  var deck = [];
-  var deck1 = [];
-  var deck2 = [];
+  var Game = {};
   var i = -1;
   var j = -1;
   var p1s = 0;
   var p2s = 0;
-  var playerOne;
   var warPot = [];
 
-  function Card(suit, value, name, img) {
-    this.suit = suit;
-    this.value = value;
-    this.name = name;
-    this.img = img;
-  }
-
-  Card.takeUserInput = function(){
-    playerOne = $('#userinputfield').val();
-    console.log(playerOne);
-  };
-
-  Card.createSuit = function(suit){
-    for (var i = 0; i < 13; i++) {
-      deck.push(new Card ( suit, parseInt([i]) + 2, cardsInSuit[i] + ' of ' + suit, '<img src="img/' + cardsInSuit[i] + suit + '.png">'));
-    }
-  };
-
-  Card.shuffleDeck = function() {
-    deck.sort(function() { return 0.5 - Math.random();});
-    for (var i = 0; i < deck.length; i += 2){
-      deck1.push(deck[i]);
-      deck[i + 1] && deck2.push(deck[i + 1]);
-    };
-  };
-
-  Card.handleWar = function() {
+  Game.handleWar = function() {
     $('#warspace').text('');
-    Card.flip();
+    Game.flip();
     if(deck1.length -1 === 0 || deck2.length -1 === 0){
-      Card.gameOver();
+      Game.gameOver();
     } else {
       $('#winner').text('');
-      setTimeout('Card.displayCard1();', 500);
-      setTimeout('Card.displayCard2();', 500);
-      setTimeout('Card.displayWinner();', 1000);
+      setTimeout('Game.displayCard1();', 500);
+      setTimeout('Game.displayCard2();', 500);
+      setTimeout('Game.displayWinner();', 1000);
       setTimeout('$("#next").show();', 1000);
     }
   };
 
-  Card.playerOneWins = function(){
+  Game.playerOneWins = function(){
     $('#winner').text(playerOne + ' wins the round');
     p1s++;
     deck1.push(deck2[j], deck1[i]);
@@ -64,7 +40,7 @@
     console.log(deck2);
   };
 
-  Card.playerTwoWins = function(){
+  Game.playerTwoWins = function(){
     $('#winner').text('Computer wins the round');
     p2s++;
     deck2.push(deck1[i], deck2[j]);
@@ -76,7 +52,7 @@
     console.log(deck2);
   };
 
-  Card.war = function() {
+  Game.war = function() {
     console.log('WAR!!!!');
     $('#winner').text('WAR!!!');
     $('#next').hide();
@@ -84,23 +60,23 @@
     deck1.splice(i, 1);
     deck2.splice(j, 1);
     console.log(warPot);
-    setTimeout('Card.handleWar();', 2000);
+    setTimeout('Game.handleWar();', 2000);
   };
 
-  Card.displayWinner = function() {
+  Game.displayWinner = function() {
     if (deck1[i].value == deck2[j].value){
-      Card.war();
+      Game.war();
     } else if (deck1[i].value > deck2[j].value) {
-      Card.playerOneWins();
+      Game.playerOneWins();
     } else {
-      Card.playerTwoWins();
+      Game.playerTwoWins();
     }
     console.log(playerOne + ' has ' + deck1.length + ' cards');
     console.log('The computer has ' + deck2.length + ' cards');
     console.log('------------------------------------');
   };
 
-  Card.gameOver = function() {
+  Game.gameOver = function() {
     alert('game over! ' + playerOne + ' score = ' + p1s + ' Computer score ' + p2s);
     $('#next').hide();
     var $ngb = $('<input type="button" value="New Game" />');
@@ -114,10 +90,9 @@
   var logCards = function() {
     console.log('i = ' + i + ' j = ' + j);
     console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
-
   };
 
-  Card.flip = function() {
+  Game.flip = function() {
     if (i >= deck1.length -1) {
       i = 0;
       console.log(playerOne + ' hit the end of their deck');
@@ -133,38 +108,28 @@
     }
   };
 
-  Card.playGame = function() {
+  Game.playGame = function() {
     $('#next').on('click', function() {
-      Card.flip();
+      Game.flip();
       $('#winner').text('');
       $('#warspace').text('');
       if(deck1.length -1 === 0 || deck2.length -1 === 0){
-        Card.gameOver();
+        Game.gameOver();
       } else {
-        // Card.displayCard1();
-        // Card.displayCard2();
-        setTimeout('Card.displayCard1()', 500);
-
-        setTimeout('Card.displayCard2()', 500);
-        setTimeout('Card.displayWinner()', 1000);
+        setTimeout('Game.displayCard1()', 500);
+        setTimeout('Game.displayCard2()', 500);
+        setTimeout('Game.displayWinner()', 1000);
       }
     }
   );};
 
-  Card.displayCard1 = function() {
+  Game.displayCard1 = function() {
     $('#warspace').html(deck1[i].img + ' ' + 'vs');
   };
 
-  Card.displayCard2 = function() {
+  Game.displayCard2 = function() {
     $('#warspace').append(' ' + deck2[j].img);
   };
 
-  Card.createSuit('Clubs');
-  Card.createSuit('Spades');
-  Card.createSuit('Diamonds');
-  Card.createSuit('Hearts');
-  Card.shuffleDeck();
-  Card.playGame();
-
-  module.Card = Card;
+  module.Game = Game;
 })(window);
