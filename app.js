@@ -57,8 +57,7 @@
       console.log('WAR!!!!');
       $('#winner').text('WAR!!!');
       $('#next').hide();
-      warPot.push(deck1[i]);
-      warPot.push(deck2[j]);
+      warPot.push(deck1[i], deck2[j]);
       deck1.splice(i, 1);
       deck2.splice(j, 1);
       console.log(warPot);
@@ -66,21 +65,23 @@
     } else if (deck1[i].value > deck2[j].value) {
       $('#winner').text(playerOne + ' wins the round');
       p1s++;
-      deck1.push(deck2[j]);
-      deck1.push(deck1[i]);
+      deck1.push(deck2[j], deck1[i]);
       deck2.splice(j, 1);
       deck1.splice(i, 1);
       deck1 = deck1.concat(warPot);
       warPot = [];
+      console.log(deck1);
+      console.log(deck2);
     } else {
       $('#winner').text('computer wins the round');
       p2s++;
-      deck2.push(deck1[i]);
-      deck2.push(deck2[j]);
+      deck2.push(deck1[i], deck2[j]);
       deck1.splice(i, 1);
       deck2.splice(j, 1);
       deck2 = deck2.concat(warPot);
       warPot = [];
+      console.log(deck1);
+      console.log(deck2);
     }
     console.log(playerOne + ' has ' + deck1.length + ' cards');
     console.log('The computer has ' + deck2.length + ' cards');
@@ -101,8 +102,7 @@
   var logCards = function() {
     console.log('i = ' + i + ' j = ' + j);
     console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
-    console.log(deck1);
-    console.log(deck2);
+
   };
 
   Card.flip = function() {
