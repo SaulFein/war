@@ -39,49 +39,61 @@
   };
 
   Card.handleWar = function() {
-    $('warspace').text('');
+    $('#warspace').text('');
     Card.flip();
     if(deck1.length -1 === 0 || deck2.length -1 === 0){
       Card.gameOver();
     } else {
-      $('warspace').text('');
-      Card.displayCard1();
-      Card.displayCard2();
-      Card.displayWinner();
-      $('#next').show();
+      $('#winner').text('');
+      setTimeout('Card.displayCard1();', 500);
+      setTimeout('Card.displayCard2();', 500);
+      setTimeout('Card.displayWinner();', 1000);
+      setTimeout('$("#next").show();', 1000);
     }
+  };
+
+  Card.playerOneWins = function(){
+    $('#winner').text(playerOne + ' wins the round');
+    p1s++;
+    deck1.push(deck2[j], deck1[i]);
+    deck2.splice(j, 1);
+    deck1.splice(i, 1);
+    deck1 = deck1.concat(warPot);
+    warPot = [];
+    console.log(deck1);
+    console.log(deck2);
+  };
+
+  Card.playerTwoWins = function(){
+    $('#winner').text('Computer wins the round');
+    p2s++;
+    deck2.push(deck1[i], deck2[j]);
+    deck1.splice(i, 1);
+    deck2.splice(j, 1);
+    deck2 = deck2.concat(warPot);
+    warPot = [];
+    console.log(deck1);
+    console.log(deck2);
+  };
+
+  Card.war = function() {
+    console.log('WAR!!!!');
+    $('#winner').text('WAR!!!');
+    $('#next').hide();
+    warPot.push(deck1[i], deck2[j]);
+    deck1.splice(i, 1);
+    deck2.splice(j, 1);
+    console.log(warPot);
+    setTimeout('Card.handleWar();', 2000);
   };
 
   Card.displayWinner = function() {
     if (deck1[i].value == deck2[j].value){
-      console.log('WAR!!!!');
-      $('#winner').text('WAR!!!');
-      $('#next').hide();
-      warPot.push(deck1[i], deck2[j]);
-      deck1.splice(i, 1);
-      deck2.splice(j, 1);
-      console.log(warPot);
-      setTimeout('Card.handleWar();', 2000);
+      Card.war();
     } else if (deck1[i].value > deck2[j].value) {
-      $('#winner').text(playerOne + ' wins the round');
-      p1s++;
-      deck1.push(deck2[j], deck1[i]);
-      deck2.splice(j, 1);
-      deck1.splice(i, 1);
-      deck1 = deck1.concat(warPot);
-      warPot = [];
-      console.log(deck1);
-      console.log(deck2);
+      Card.playerOneWins();
     } else {
-      $('#winner').text('computer wins the round');
-      p2s++;
-      deck2.push(deck1[i], deck2[j]);
-      deck1.splice(i, 1);
-      deck2.splice(j, 1);
-      deck2 = deck2.concat(warPot);
-      warPot = [];
-      console.log(deck1);
-      console.log(deck2);
+      Card.playerTwoWins();
     }
     console.log(playerOne + ' has ' + deck1.length + ' cards');
     console.log('The computer has ' + deck2.length + ' cards');
@@ -125,14 +137,16 @@
     $('#next').on('click', function() {
       Card.flip();
       $('#winner').text('');
+      $('#warspace').text('');
       if(deck1.length -1 === 0 || deck2.length -1 === 0){
         Card.gameOver();
       } else {
-        Card.displayCard1();
-        Card.displayCard2();
+        // Card.displayCard1();
+        // Card.displayCard2();
+        setTimeout('Card.displayCard1()', 500);
 
-        // setTimeout('Card.displayCard2()', 500);
-        Card.displayWinner();
+        setTimeout('Card.displayCard2()', 500);
+        setTimeout('Card.displayWinner()', 1000);
       }
     }
   );};
@@ -145,14 +159,12 @@
     $('#warspace').append(' ' + deck2[j].img);
   };
 
-  // Card.takeUserInput();
   Card.createSuit('Clubs');
   Card.createSuit('Spades');
   Card.createSuit('Diamonds');
   Card.createSuit('Hearts');
   Card.shuffleDeck();
   Card.playGame();
-
 
   module.Card = Card;
 })(window);
