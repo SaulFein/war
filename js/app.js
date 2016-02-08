@@ -57,16 +57,18 @@ var playerOne;
     $('#winner').text('WAR!!!');
     $('#next').hide();
     for(var k = 0; k <= 3; k++){
-      warPot.push(deck1[i], deck2[j]);
-      deck1.splice(i, 1);
-      deck2.splice(j, 1);
+      Game.send2WP();
       Game.flip();
     }
+    Game.send2WP();
+    console.log(warPot);
+    setTimeout('Game.handleWar();', 2000);
+  };
+
+  Game.send2WP = function() {
     warPot.push(deck1[i], deck2[j]);
     deck1.splice(i, 1);
     deck2.splice(j, 1);
-    console.log(warPot);
-    setTimeout('Game.handleWar();', 2000);
   };
 
   Game.flip = function() {
