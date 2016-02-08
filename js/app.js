@@ -14,20 +14,6 @@ var playerOne;
   var p2s = 0;
   var warPot = [];
 
-  Game.handleWar = function() {
-    $('#warspace').text('');
-    Game.flip();
-    if(deck1.length -1 === 0 || deck2.length -1 === 0){
-      Game.gameOver();
-    } else {
-      $('#winner').text('');
-      setTimeout('Game.displayCard1();', 500);
-      setTimeout('Game.displayCard2();', 500);
-      setTimeout('Game.displayWinner();', 1000);
-      setTimeout('$("#next").show();', 1000);
-    }
-  };
-
   Game.playerOneWins = function(){
     $('#winner').text(playerOne + ' wins the round');
     p1s++;
@@ -52,15 +38,51 @@ var playerOne;
     console.log(deck2);
   };
 
+  Game.handleWar = function() {
+    $('#warspace').text('');
+    Game.flip();
+    if(deck1.length -1 === 0 || deck2.length -1 === 0){
+      Game.gameOver();
+    } else {
+      $('#winner').text('');
+      setTimeout('Game.displayCard1();', 500);
+      setTimeout('Game.displayCard2();', 500);
+      setTimeout('Game.displayWinner();', 1000);
+      setTimeout('$("#next").show();', 1000);
+    }
+  };
+
   Game.war = function() {
     console.log('WAR!!!!');
     $('#winner').text('WAR!!!');
     $('#next').hide();
+    for(var k = 0; k <= 3; k++){
+      warPot.push(deck1[i], deck2[j]);
+      deck1.splice(i, 1);
+      deck2.splice(j, 1);
+      Game.flip();
+    }
     warPot.push(deck1[i], deck2[j]);
     deck1.splice(i, 1);
     deck2.splice(j, 1);
     console.log(warPot);
     setTimeout('Game.handleWar();', 2000);
+  };
+
+  Game.flip = function() {
+    if (i >= deck1.length -1) {
+      i = 0;
+      console.log(playerOne + ' hit the end of their deck');
+      logCards();
+    } else if (j >= deck2.length -1) {
+      j = 0;
+      console.log('The Computer hit the end of its deck');
+      logCards();
+    } else {
+      i++;
+      j++;
+      logCards();
+    }
   };
 
   Game.displayWinner = function() {
@@ -92,24 +114,9 @@ var playerOne;
     console.log('player = ' + deck1[i].name + ' computer = ' + deck2[j].name);
   };
 
-  Game.flip = function() {
-    if (i >= deck1.length -1) {
-      i = 0;
-      console.log(playerOne + ' hit the end of their deck');
-      logCards();
-    } else if (j >= deck2.length -1) {
-      j = 0;
-      console.log('The Computer hit the end of its deck');
-      logCards();
-    } else {
-      i++;
-      j++;
-      logCards();
-    }
-  };
-
   Game.playGame = function() {
     $('#next').on('click', function() {
+      $('.button').prop('disabled', true);
       Game.flip();
       $('#winner').text('');
       $('#warspace').text('');
@@ -119,6 +126,7 @@ var playerOne;
         setTimeout('Game.displayCard1()', 500);
         setTimeout('Game.displayCard2()', 500);
         setTimeout('Game.displayWinner()', 1000);
+        setTimeout('$(".button").prop("disabled", false);', 1000);
       }
     }
   );};
